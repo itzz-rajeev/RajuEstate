@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth.routes.js';
+import userRouter from './routes/user.routes.js';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 const app = express();
 
 dotenv.config();
@@ -13,8 +15,10 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
 });
 
 app.use(express.json());
+app.use(cookieParser());
 
 // Define your routes before error handling middleware
+app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 
 // Error handling middleware
