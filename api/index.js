@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth.routes.js';
 import userRouter from './routes/user.routes.js';
+import listingRouter from './routes/listing.routes.js';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 const app = express();
@@ -20,6 +21,7 @@ app.use(cookieParser());
 // Define your routes before error handling middleware
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/listing', listingRouter);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
