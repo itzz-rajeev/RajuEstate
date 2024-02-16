@@ -1,6 +1,7 @@
 import bcryptjs from "bcryptjs";
 import User from "../models/user.model.js";
-import {errorHandler} from "../utils/error.js";
+import Listing from "../models/listing.model.js";
+import { errorHandler } from "../utils/error.js";
 export const test = (req, res) => {
   res.json({
     message: "Api Route is Working",
@@ -8,22 +9,25 @@ export const test = (req, res) => {
 };
 
 export const updateUser = async (req, res, next) => {
- 
   if (req.user.id != req.params.id)
     return next(errorHandler(403, "You can update only your account"));
   try {
-    if(req.body.password){
-        req.body.password = bcryptjs.hashSync(req.body.password, 10);
+    if (req.body.password) {
+      req.body.password = bcryptjs.hashSync(req.body.password, 10);
     }
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.id,
+      {
         $set: {
-            username: req.body.username,
-            email: req.body.email,
-            password: req.body.password,
-            avatar: req.body.avatar,
-        }
-    }, { new: true });
-    const {password , ...rest} =updatedUser._doc;
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+          avatar: req.body.avatar,
+        },
+      },
+      { new: true }
+    );
+    const { password, ...rest } = updatedUser._doc;
     res.status(200).json(rest);
   } catch (error) {
     next(error);
@@ -31,7 +35,7 @@ export const updateUser = async (req, res, next) => {
 };
 
 export const deleteUser = async (req, res, next) => {
-  if(req.user.id != req.params.id)
+  if (req.user.id != req.params.id)
     return next(errorHandler(403, "You can delete only your account"));
   try {
     await User.findByIdAndDelete(req.params.id);
@@ -40,4 +44,15 @@ export const deleteUser = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
+
+export const getUserListings = async (req, res, next) => {
+  if (req.user.id != req.params.id)
+    return next(errorHandler(403, "You can get only your account"));
+  try {
+    const listings = await Listing.find({ userRef: req.params.id });
+    res.status(200).json(listings);
+  } catch (error) {
+    next(error);
+  }
+};
