@@ -19,12 +19,13 @@ export const deleteListing = async (req, res, next) => {
     return next(errorHandler("401", "You can only delete your own listing"));
   }
   try {
-    await Listing.findByIdAndDelete(req.params.id);
-    return res.status(200).json("Listing has been deleted");
+     await Listing.findByIdAndDelete(req.params.id);
+    return res.status(200).json("Listing has been deleted" );
   } catch (error) {
     next(error);
   }
 };
+
 
 export const updateListing = async (req, res, next) => {
   const listing = await Listing.findById(req.params.id);
