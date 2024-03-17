@@ -1,4 +1,5 @@
-import React from "react"
+// eslint-disable-next-line no-unused-vars
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import Profile from "./pages/Profile"
@@ -11,6 +12,7 @@ import CreateListing from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 import Search from "./pages/Search";
+
 function App() {
   return (
     <BrowserRouter>

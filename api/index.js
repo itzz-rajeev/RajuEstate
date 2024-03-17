@@ -10,14 +10,9 @@ const app = express();
 
 dotenv.config();
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("Connected to MongoDB");
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
+mongoose.connect("mongodb://localhost:27017/realestate")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const __dirname = path.resolve();
 
@@ -25,14 +20,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Define your routes before error handling middleware
+
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
-app.use(express.static(path.join(__dirname, '/client/dist')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-});
+// app.use(express.static(path.join(__dirname, '/client/dist')));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+// });
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
