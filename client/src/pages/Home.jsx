@@ -5,18 +5,20 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
-
+import Footer from './Footer';
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
   SwiperCore.use([Navigation]);
-  console.log(offerListings);
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
-        const res = await fetch('/api/listing/get?offer=true&limit=4');
+        const res = await fetch('/api/listing/get?offer=true&limit=4',
+          {method:'GET'}
+        );
         const data = await res.json();
+        console.log("listings...",data);
         setOfferListings(data);
         fetchRentListings();
       } catch (error) {
@@ -55,7 +57,7 @@ export default function Home() {
           place with ease
         </h1>
         <div className='text-gray-400 text-xs sm:text-sm'>
-          Tejas Estate is the best place to find your next perfect place to
+          Vinay Estate is the best place to find your next perfect place to
           live.
           <br />
           We have a wide range of properties for you to choose from.
@@ -129,6 +131,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      <Footer/>
     </div>
   );
 }
