@@ -2,6 +2,8 @@ import User from "../models/user.model.js";
 import bcryptjs from 'bcryptjs';
 import {errorHandler} from "../utils/error.js";
 import jwt from 'jsonwebtoken';
+import dotenv  from 'dotenv';
+dotenv.config();
 export const signup = async (req, res, next) => {
     const {username, email, password} =req.body;
     const hashedPassword = bcryptjs.hashSync(password,10);
@@ -24,6 +26,7 @@ export const signin = async(req,res,next)=>{
         if(!validPassword) return next(errorHandler(404,'wrong credentials'));
         const token = jwt.sign({id: validUser._id},process.env.JWT_SECRET);
         const {password: pass, ...rest}= validUser._doc;
+        console.log(validUser._doc);
         res
         .cookie('access_token',token,{httpOnly: true})
         .status(200)
