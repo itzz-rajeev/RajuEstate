@@ -11,7 +11,7 @@ dotenv.config()
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
-  .catch((err) => console.error('MongoDB connection error:', err))
+  .catch(() => console.error('MongoDB connection error:'))
 
 // const __dirname = path.resolve();
 app.use(express.json())
