@@ -14,8 +14,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(() => console.error('MongoDB connection error:'))
 
-const __filename = new URL(import.meta.url).pathname
-const __dirname = path.dirname(__filename)
+const __dirname = path.resolve()
 
 app.use(express.json())
 app.use(cookieParser())
