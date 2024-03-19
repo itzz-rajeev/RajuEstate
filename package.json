@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon api/index.js",
     "start": "concurrently \"cd client && npm run build\" \"npm run dev\"",
-    "build": "npm run build --prefix client && npm start "
+    "build": "npm install && npm install --prefix client && npm start "
   },
   "author": "",
   "license": "ISC",
