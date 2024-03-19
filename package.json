@@ -9,6 +9,7 @@
     "start": "nodemon api/index.js",
     "build": "npm install && npm install --prefix client && npm run dev --prefix client "
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
