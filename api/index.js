@@ -15,7 +15,16 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(() => console.error('MongoDB connection error:'))
 
 const __dirname = path.resolve()
-
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '/client/dist')))
+  app.get('*', (req, res) => {
+    res.sendFile()
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running...')
+  })
+}
 app.use(express.json())
 app.use(cookieParser())
 
@@ -39,4 +48,4 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(3000, () => console.log('Server running on port 3000'))
+app.listen(4000, () => console.log('Server running on port 4000'))
