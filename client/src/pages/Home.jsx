@@ -5,7 +5,7 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
-import Footer from './Footer';
+
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
@@ -50,7 +50,7 @@ export default function Home() {
   return (
     <div>
       {/* top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
+      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto min-h-screen'>
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
           Find your next <span className='text-slate-500'>perfect</span>
           <br />
@@ -131,7 +131,6 @@ export default function Home() {
           </div>
         )}
       </div>
-      <Footer/>
     </div>
   );
 }

@@ -62,7 +62,6 @@ export const getListing = async (req, res, next) => {
 export const getListings = async (req, res, next) => {
   try {
     const listings = await Listing.find().limit(6)
-    console.log(listings)
     res.send(listings)
   } catch (error) {
     next()
@@ -73,7 +72,6 @@ export const getListings = async (req, res, next) => {
 //     const limit = parseInt(req.query.limit) || 9
 //     const startIndex = parseInt(req.query.startIndex) || 0
 //     let offer = req.query.offer
-//     console.log(offer)
 //     if (offer === undefined || offer === 'false') {
 //       offer = { $in: [false, true] }
 //     }
