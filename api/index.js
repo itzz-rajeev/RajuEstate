@@ -28,9 +28,8 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(express.json())
 app.use(cookieParser())
-app.get("/",(req,res)=>{
-  
-  res.send("Hello");
+app.get('/', (req, res) => {
+  res.send('Hello')
 })
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
