@@ -25,9 +25,13 @@ if (process.env.NODE_ENV === 'production') {
     res.send('API is running...')
   })
 }
+
 app.use(express.json())
 app.use(cookieParser())
-
+app.get("/",(req,res)=>{
+  
+  res.send("Hello");
+})
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/listing', listingRouter)
