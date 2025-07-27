@@ -43,7 +43,7 @@ const Footer = () => {
         <Column>
           <Heading>About Us</Heading>
           <Paragraph>
-          "Vinay Estate: Your premier real estate partner for buying, selling, and leasing properties. Our expert team provides seamless guidance to achieve your goals, making transactions gratifying and fulfilling."
+          "Raju Estate: Your premier real estate partner for buying, selling, and leasing properties. Our expert team provides seamless guidance to achieve your goals, making transactions gratifying and fulfilling."
           </Paragraph>
         </Column>
         <Column>
@@ -58,9 +58,9 @@ const Footer = () => {
         <Column>
           <Heading>Contact Us</Heading>
           <Paragraph>
-            Rajiv Ghandi University of Knowledge Technologies-Basar, Nirmal,Telangana-504107<br />
-            Phone: +91 798959432<br />
-            Email: vinayestate@gmail.com
+            Rajiv Gandhi University of Knowledge Technologies-Basar, Nirmal,Telangana-504107<br />
+            Phone: +91 7730094057<br />
+            Email: rajuestate@gmail.com
           </Paragraph>
         </Column>
       </FooterContent>
@@ -68,7 +68,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <Paragraph>&copy; 2024 Vinay Estate Company. All rights reserved.</Paragraph>
+              <Paragraph>&copy; 2025 Raju Estate Company. All rights reserved.</Paragraph>
             </div>
           </div>
         </div>
