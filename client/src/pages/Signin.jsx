@@ -26,8 +26,12 @@ const handleSubmit = async (e) => {
     const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/auth/signin`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData), // ✅ Correct usage
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password
+      })
     });
+
     const data = await res.json();
     if (data.success === false) {
       dispatch(signInFailure(data.message));
@@ -39,6 +43,7 @@ const handleSubmit = async (e) => {
     dispatch(signInFailure(error.message));
   }
 };
+
 
 
 
