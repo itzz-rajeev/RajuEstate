@@ -5,41 +5,34 @@ import userRouter from './routes/user.routes.js'
 import listingRouter from './routes/listing.routes.js'
 import express from 'express'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 import path from 'path'
-const app = express()
 
+const app = express()
 dotenv.config()
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(() => console.error('MongoDB connection error:'))
-
-// const __dirname = path.resolve()
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '/client/dist')))
-//   app.get('*', (req, res) => {
-//     res.sendFile()
-//   })
-// } else {
-//   app.get('/', (req, res) => {
-//     res.send('API is running...')
-//  })
-//}
+// CORS for cross-origin cookies and fetch
+app.use(cors({
+  origin: 'https://rajuestate.onrender.com',
+  credentials: true,
+}))
 
 app.use(express.json())
 app.use(cookieParser())
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ Connected to MongoDB'))
+  .catch((error) => console.error('❌ MongoDB connection error:', error.message))
+
 app.get('/', (req, res) => {
-  res.send('Hello')
+  res.send('Hello from Backend')
 })
+
 app.use('/api/user', userRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/listing', listingRouter)
 
-// app.use(express.static(path.join(__dirname, '/client/dist')))
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
-// })
-
+// Error Handler
 app.use((err, req, res, next) => {
   console.error(err.stack)
   const statusCode = err.statusCode || 500
@@ -51,4 +44,6 @@ app.use((err, req, res, next) => {
   })
 })
 
-app.listen(4000, () => console.log('Server running on port 4000'))
+// PORT should be dynamic for Render
+const PORT = process.env.PORT || 4000
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))
